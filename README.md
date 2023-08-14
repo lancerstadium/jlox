@@ -1,33 +1,48 @@
 # Interpreter iterm: jlox
 
 - orgin iterm: https://github.com/GuoYaxiang/craftinginterpreters_zh/tree/main
+- Just for Learning.
 
 
-
------------------------------Commands----------------------------
+# 1 Commands
 - Compiler Jlox Execution. (v1.0.0 Scanner Test)
+
+```
 javac TokenType.java Token.java Scanner.java Lox.java
 java -classpath ../../../ com.craftinginterpreters.lox.Lox
+```
+
+- Generate "lox/Expr.java" by "tool/GenerateAst.java".
+
+```
+javac GenerateAst.java
+java -classpath ../../../ com.craftinginterpreters.tool.GenerateAst ../lox/
+```
 
 - Checkout AstPrinter Demo.
+
+```
 javac Expr.java AstPrinter.java Token.java TokenType.java
 java -classpath ../../../ com.craftinginterpreters.lox.AstPrinter
 Output: (* (- 123) (group 45.67))
+```
 
 - Compiler Jlox Execution. (v2.0.0 Parser Test)
+
+```
 javac TokenType.java Token.java Scanner.java AstPrinter.java Expr.java Parser.java Lox.java
 java -classpath ../../../ com.craftinginterpreters.lox.Lox
+```
 
 - Compiler Jlox Execution. (v2.1.0 Interpreter Test)
+
+```
 javac TokenType.java Token.java Scanner.java AstPrinter.java Expr.java Parser.java RuntimeError.java Interpreter.java Lox.java
 java -classpath ../../../ com.craftinginterpreters.lox.Lox
-
-- Generate "lox/Expr.java" by "tool/GenerateAst.java".
-javac GenerateAst.java
-java -classpath ../../../ com.craftinginterpreters.tool.GenerateAst ../lox/
+```
 
 
-------------------------------Notes------------------------------
+# 2 Notes
 
 ## Expressions Grammar:
 1. Literals. Numbers, strings, Booleans, and nil
@@ -84,6 +99,13 @@ printStmt      → "print" expression ";" ;
 
 ```
 
+# 3 Git
 
+- Git steps: 
 
-
+```
+git add .
+git status
+git commit -m "v2.1.0 Interpreter"
+git push origin main
+```
