@@ -1,12 +1,31 @@
 package com.craftinginterpreters.lox;
 
+import java.util.List;
 
 abstract class Expr {
   interface Visitor<R> {
+    R visitAssignExpr(Assign expr);
     R visitBinaryExpr(Binary expr);
     R visitGroupingExpr(Grouping expr);
     R visitLiteralExpr(Literal expr);
     R visitUnaryExpr(Unary expr);
+    R visitVariableExpr(Variable expr);
+  }
+  // Class: Assign
+  static class Assign extends Expr {
+    // Constructor: Assign
+    Assign(Token name, Expr value) {
+      this.name = name;
+      this.value = value;
+    }
+
+    @Override
+    <R> R accept(Visitor<R> visitor) {
+      return visitor.visitAssignExpr(this);
+    }
+    // Fields: Assign
+    final Token name;
+    final Expr value;
   }
   // Class: Binary
   static class Binary extends Expr {
@@ -69,6 +88,20 @@ abstract class Expr {
     // Fields: Unary
     final Token operator;
     final Expr right;
+  }
+  // Class: Variable
+  static class Variable extends Expr {
+    // Constructor: Variable
+    Variable(Token name) {
+      this.name = name;
+    }
+
+    @Override
+    <R> R accept(Visitor<R> visitor) {
+      return visitor.visitVariableExpr(this);
+    }
+    // Fields: Variable
+    final Token name;
   }
 
   abstract <R> R accept(Visitor<R> visitor);

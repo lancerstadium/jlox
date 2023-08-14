@@ -41,6 +41,12 @@ javac TokenType.java Token.java Scanner.java AstPrinter.java Expr.java Parser.ja
 java -classpath ../../../ com.craftinginterpreters.lox.Lox
 ```
 
+- Generate "lox/Stmt.java" by "tool/GenerateAst.java".
+
+```
+javac GenerateAst.java
+java -classpath ../../../ com.craftinginterpreters.tool.GenerateAst ../lox/
+```
 
 # 2 Notes
 
@@ -83,7 +89,7 @@ primary        → NUMBER | STRING | "true" | "false" | "nil"
 ```
 
 
-## Statement
+## Statement syntax
 
 - grammar: 
 
@@ -97,6 +103,49 @@ statement      → exprStmt
 exprStmt       → expression ";" ;
 printStmt      → "print" expression ";" ;
 
+```
+
+
+## Varible syntax
+
+```
+program        → declaration* EOF ;
+
+declaration    → varDecl
+               | statement ;
+
+statement      → exprStmt
+               | printStmt ;
+
+varDecl        → "var" IDENTIFIER ( "=" expression )? ";" ;
+
+
+```
+
+## Assignment Syntax
+```
+expression     → assignment ;
+assignment     → IDENTIFIER "=" assignment
+               | equality ;
+```
+
+## Block Syntax
+
+```
+statement      → exprStmt
+               | printStmt
+               | block ;
+
+block          → "{" declaration* "}" ;
+```
+
+- try this in exec:
+```
+var a = "global a";
+{var a = "outer a"; {var a = "inner a"; print a;} print a;} print a;
+
+
+var a = 1; {var a = a + 2; print a; }
 ```
 
 # 3 Git
