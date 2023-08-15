@@ -48,8 +48,8 @@ public class Lox {
         BufferedReader reader = new BufferedReader(input);
 
         System.out.println("----------------------------Jlox-------------------------");
-        System.out.println("[Jlox]> Welcome to Jlox v2.2.0 !");
-        System.out.println("[Jlox]> Time: 2023/8/14 Author: Lancer");
+        System.out.println("[Jlox]> Welcome to Jlox v3.0.0 !");
+        System.out.println("[Jlox]> Time: 2023/8/15 Author: Lancer");
         System.out.println("[Jlox]> Start with your commod: ");
         // main loop
         for (;;) {

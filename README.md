@@ -41,6 +41,13 @@ javac TokenType.java Token.java Scanner.java AstPrinter.java Expr.java Parser.ja
 java -classpath ../../../ com.craftinginterpreters.lox.Lox
 ```
 
+- Compiler Jlox Execution. (v3.0.0 AST)
+
+```
+javac TokenType.java Token.java Scanner.java AstPrinter.java Expr.java Parser.java RuntimeError.java Interpreter.java Stmt.java Environment.java Lox.java
+java -classpath ../../../ com.craftinginterpreters.lox.Lox ../test/test1.lox
+```
+
 - Generate "lox/Stmt.java" by "tool/GenerateAst.java".
 
 ```
@@ -147,6 +154,55 @@ var a = "global a";
 
 var a = 1; {var a = a + 2; print a; }
 ```
+## Condition Syntax
+
+```
+statement      → exprStmt
+               | ifStmt
+               | printStmt
+               | block ;
+
+ifStmt         → "if" "(" expression ")" statement
+               ( "else" statement )? ;
+```
+
+## Logical Syntax
+
+```
+expression     → assignment ;
+assignment     → IDENTIFIER "=" assignment
+               | logic_or ;
+logic_or       → logic_and ( "or" logic_and )* ;
+logic_and      → equality ( "and" equality )* ;
+```
+
+## Loop Syntax
+
+- while:
+```
+statement      → exprStmt
+               | ifStmt
+               | printStmt
+               | whileStmt
+               | block ;
+
+whileStmt      → "while" "(" expression ")" statement ;
+```
+
+- for:
+```
+statement      → exprStmt
+               | forStmt
+               | ifStmt
+               | printStmt
+               | whileStmt
+               | block ;
+
+forStmt        → "for" "(" ( varDecl | exprStmt | ";" )
+                 expression? ";"
+                 expression? ")" statement ;
+```
+
 
 # 3 Git
 
